@@ -44,7 +44,7 @@ getGeneList <- function(gtf, type="protein_coding"){
 #' EDfromBams(bamFiles, gtf, output_name="output.txt", virtualenv=0, r="VARSL-VARS2,C6orf205-MUC21")
 
           
-EDfromBams <- function(bamFiles, gtf, output_name="ed_table.txt", virtualenv=0, r="VARSL-VARS2,C6orf205-MUC21"){
+EDfromBams <- function(bamFiles, gtf, output_name="ed_table.txt", virtualenv=0, r= NA){
     
     py_path=system.file("scripts", "make_a_table.py", package = "AltHapAlignR")
 
@@ -53,14 +53,14 @@ EDfromBams <- function(bamFiles, gtf, output_name="ed_table.txt", virtualenv=0, 
 
     wrapper_path <- system.file("scripts", "wrapper.sh", package = "AltHapAlignR")
     
-    command <- paste("python", py_path,  gtf, bamFiles, ">", output_name )
+    command <- paste("/opt/althapalign-py2/bin/python2 ", py_path,  gtf, bamFiles, ">", output_name )
 
     
     if(!is.na(r)){
         r <- gsub("-", " ", r)
         r <- gsub(",", " -r ", r)
         r <- paste0("-r ", r)
-        command <- paste("python ", py_path, r,  gtf, bamFiles, ">", output_name )
+        command <- paste("/opt/althapalign-py2/bin/python2 ", py_path, r,  gtf, bamFiles, ">", output_name )
     }
     
     
