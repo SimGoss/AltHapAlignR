@@ -50,6 +50,8 @@ EDfromBams <- function(bamFiles, gtf, output_name="ed_table.txt", virtualenv=0, 
 
     #py_path="./inst/scripts/make_a_table.py"
     bamFiles <- paste(bamFiles, collapse = " ")
+
+    wrapper_path <- system.file("scripts", "wrapper.sh", package = "AltHapAlignR")
     
     command <- paste("python", py_path,  gtf, bamFiles, ">", output_name )
 
@@ -63,7 +65,7 @@ EDfromBams <- function(bamFiles, gtf, output_name="ed_table.txt", virtualenv=0, 
     
     
     if( virtualenv!=0 ){
-          command <- paste0("./inst/scripts/wrapper.sh ", virtualenv, " ", command )
+          command <- paste0(wrapper_path, " ", virtualenv, " ", command )
           #print(command)
     }
     if( virtualenv==0 ){
