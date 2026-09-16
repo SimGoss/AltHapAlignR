@@ -103,7 +103,9 @@ with open(gtf_file, 'r') as f:
                 exons[t[0]].add_data(start, end, 1)
                 n_exons += 1
         except Exception:
+            print >> sys.stderr, "ERROR #####################"
             print(t)
+            sys.exit(0)
             
 print >> sys.stderr, "Done (%.2f seconds): %d genes and %d exons" % (get_elapsed(), len(n_genes), n_exons)
 
