@@ -104,6 +104,7 @@ with open(gtf_file, 'r') as f:
                 n_exons += 1
         except Exception:
             print >> sys.stderr, "ERROR #####################"
+            print(line)
             print(t)
             sys.exit(0)
             
