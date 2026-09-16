@@ -85,22 +85,26 @@ n_genes = set()
 n_exons = 0
 with open(gtf_file, 'r') as f:
     for line in f:
-        t = line.strip().split("\t")
-        if gene_type_filter and not gene_type_filter.search(t[8]):
-            continue
-        if transcript_type_filter and not transcript_type_filter.search(t[8]):
-            continue
-        if t[2] == "exon":
-            i1 = t[8].find('gene_name')
-            i2 = t[8].find(';', i1)
-            gn = t[8][i1+9:i2].strip().strip('"')
-            name = gene_renames.get(gn, gn)
-            start = int(t[3])
-            end = int(t[4])
-            gene_names[t[0]].add_data(start, end, name)
-            n_genes.add(name)
-            exons[t[0]].add_data(start, end, 1)
-            n_exons += 1
+        try:
+            t = line.strip().split("\t")
+            if gene_type_filter and not gene_type_filter.search(t[8]):
+                continue
+            if transcript_type_filter and not transcript_type_filter.search(t[8]):
+                continue
+            if t[2] == "exon":
+                i1 = t[8].find('gene_name')
+                i2 = t[8].find(';', i1)
+                gn = t[8][i1+9:i2].strip().strip('"')
+                name = gene_renames.get(gn, gn)
+                start = int(t[3])
+                end = int(t[4])
+                gene_names[t[0]].add_data(start, end, name)
+                n_genes.add(name)
+                exons[t[0]].add_data(start, end, 1)
+                n_exons += 1
+        except Exception:
+            print(t)
+            
 print >> sys.stderr, "Done (%.2f seconds): %d genes and %d exons" % (get_elapsed(), len(n_genes), n_exons)
 
 print >> sys.stderr, "Opening the BAM files ...",
