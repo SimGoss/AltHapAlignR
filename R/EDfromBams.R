@@ -15,17 +15,19 @@
 #' # summary of gene information, format: data.frame
 
 
-getGeneList <- function(gtf, type="protein_coding"){
-        g <- import(gtf, "gtf")
-        g <- subset(g, type=="gene")
-        g <- data.frame(chr=as.character(g@seqnames),
-                        start=as.numeric(g@ranges@start),
-                        end=as.numeric(g@ranges@start + g@ranges@width),
-                        gene_name=as.character(g$gene_name),
-                        gene_type=as.character(g$gene_type),
-                        gene_status=as.character(g$gene_status),
-                        transcript_type=as.character(g$transcript_type) )
+getGeneList <- function(gtf, type="protein"){
+	g <- import(gtf, "gtf")
+	g <- subset(g, type=="gene")
+	g = as.data.frame(g)
+	g <- data.frame(chr=as.character(g$seqnames),
+                        start=as.numeric(g$start),
+                        end=as.numeric(g$end),
+                        gene_name=as.character(g$gene_id),
+                        gene_type=as.character(g$gene_biotype),
+                        gene_status=NA,
+                        transcript_type=as.character(g$transcript_biotype) )
         g <-subset(g, gene_type==type) 
+        return(g)
 }
 
 
