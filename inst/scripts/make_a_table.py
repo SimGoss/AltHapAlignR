@@ -53,7 +53,7 @@ parser.add_option("-r", "--rename_gene", nargs = 2, action = 'append', dest = 'g
         help = 'Replace some erroneous gene names')
 parser.add_option("-g", "--gene_types", dest = 'gene_types', default = 'protein',
         help = 'Comma-separated list of gene biotypes to use [default: %default]. Use an empty string for no filtering')
-parser.add_option("-t", "--transcript_types", dest = 'transcript_types', default = 'protein',
+parser.add_option("-t", "--transcript_types", dest = 'transcript_types', default = '',
         help = 'Comma-separated list of transcript biotypes to use for the exon-overlap filtering [default: %default]. Use an empty string for no filtering')
 (options, args) = parser.parse_args()
 
