@@ -87,6 +87,8 @@ with open(gtf_file, 'r') as f:
     for line in f:
         try:
             t = line.strip().split("\t")
+            print >> sys.stderr, t
+            print >> sys.stderr
             if gene_type_filter and not gene_type_filter.search(t[8]):
                 continue
             if transcript_type_filter and not transcript_type_filter.search(t[8]):
