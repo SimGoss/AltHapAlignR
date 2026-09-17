@@ -94,7 +94,7 @@ with open(gtf_file, 'r') as f:
             if transcript_type_filter and not transcript_type_filter.search(t[8]):
                 continue
             if t[2] == "exon":
-                i1 = t[8].find('gene_name')
+                i1 = t[8].find('gene_id')
                 i2 = t[8].find(';', i1)
                 gn = t[8][i1+9:i2].strip().strip('"')
                 name = gene_renames.get(gn, gn)
