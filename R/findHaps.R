@@ -231,7 +231,7 @@ heatmapByShortestPaths <- function(paired_mapping_rates, gtf, hap_names= c("apd"
         ########################################################################################
         # Load annotation from a gtf file 
         ########################################################################################
-      genes_from_gtf <- getGeneList(gtf, type="protein_coding")
+      genes_from_gtf <- getGeneList(gtf, type="protein")
       
       if(nrow(genes_from_gtf)==0){
             message("no gtf file loaded.")
