@@ -226,7 +226,7 @@ getMappingRatesFromPairs <- function(ed_table, hap_names=c("apd", "cox", "dbb", 
 #' summary_of_best_pairs <- output$summary_of_best_pairs
 
 
-heatmapByShortestPaths <- function(paired_mapping_rates, gtf, hap_names= c("apd", "cox", "dbb", "mann", "mcf", "pgf", "qbl", "ssto"), penalty=1, sample_name="sample_name"){
+heatmapByShortestPaths <- function(paired_mapping_rates, gtf, hap_names= c("apd", "cox", "dbb", "mann", "mcf", "pgf", "qbl", "ssto"), hap_chrs=c("GL000250", "GL000251", "GL000252", "GL000253", "GL000254", "chr6", "GL000255", "GL000256"), penalty=1, sample_name="sample_name"){
   
         ########################################################################################
         # Load annotation from a gtf file 
@@ -243,8 +243,8 @@ heatmapByShortestPaths <- function(paired_mapping_rates, gtf, hap_names= c("apd"
       
       unique_best_hits <- data.frame(table(paired_mapping_rates[,c("gene_name", "type")]) )
 
-      haps <- data.frame(hap_chrs= c("GL000250", "GL000251", "GL000252", "GL000253", "GL000254", "chr6", "GL000255", "GL000256"),
-                         hap_names=c("apd", "cox", "dbb", "mann", "mcf", "pgf", "qbl", "ssto") )
+      haps <- data.frame(hap_chrs= hap_chrs,
+                         hap_names=hap_names )
       
       #paired_mapping_rates <- subset(paired_mapping_rates, gene_count >= 50)   
   
