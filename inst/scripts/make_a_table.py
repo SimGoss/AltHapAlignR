@@ -97,7 +97,7 @@ with open(gtf_file, 'r') as f:
                 i1 = t[8].find('gene_id')
                 i2 = t[8].find(';', i1)
                 gn = t[8][i1+9:i2].strip().strip('"')
-                name = gene_renames.get(gn, gn) + "__" + t[0]
+                name = gene_renames.get(gn, gn)
                 start = int(t[3])
                 end = int(t[4])
                 gene_names[t[0]].add_data(start, end, name)
