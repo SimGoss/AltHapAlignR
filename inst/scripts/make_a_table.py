@@ -106,8 +106,8 @@ with open(gtf_file, 'r') as f:
                 n_exons += 1
         except Exception:
             print >> sys.stderr, "ERROR #####################"
-            print(line)
-            print(t)
+            print >> sys.stderr, line
+            print >> sys.stderr, t
             sys.exit(0)
             
 print >> sys.stderr, "Done (%.2f seconds): %d genes and %d exons" % (get_elapsed(), len(n_genes), n_exons)
